@@ -1,0 +1,28 @@
+name: Auto Merge to Release
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  merge-to-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Merge into release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git fetch origin release
+          git checkout release
+          git merge dev --no-edit
+          git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }} HEAD:release
