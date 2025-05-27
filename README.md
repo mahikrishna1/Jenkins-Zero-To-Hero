@@ -1,4 +1,5 @@
 # Jenkins-Zero-To-Hero
+Testing auto-merge from dev to release
 
 Are you looking forward to learn Jenkins right from Zero(installation) to Hero(Build end to end pipelines)? then you are at the right place. 
 
